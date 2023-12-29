@@ -26,7 +26,9 @@ public class GCLAddon : ModuleRules
                 "ModularGameplay",
                 "GameplayTags",
                 "NetCore",
-                "DeveloperSettings",
+                "RigVM",
+                "ControlRig",
+                "AnimGraphRuntime",
             }
         );
 
