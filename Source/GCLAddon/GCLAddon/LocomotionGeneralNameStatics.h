@@ -30,6 +30,20 @@ public:
 	// General Animation Curves
 public:
 	UFUNCTION(BlueprintPure, Category = "General|Animation Curves", Meta = (ReturnDisplayName = "Curve Name"))
+	static const FName& ViewBlockCurveName()
+	{
+		static const FName Name = FName(TEXTVIEW("ViewBlock"));
+		return Name;
+	}
+
+	UFUNCTION(BlueprintPure, Category = "General|Animation Curves", Meta = (ReturnDisplayName = "Curve Name"))
+	static const FName& AllowAimingCurveName()
+	{
+		static const FName Name = FName(TEXTVIEW("AllowAiming"));
+		return Name;
+	}
+
+	UFUNCTION(BlueprintPure, Category = "General|Animation Curves", Meta = (ReturnDisplayName = "Curve Name"))
 	static const FName& RotationYawSpeedCurveName()
 	{
 		static const FName Name = FName(TEXTVIEW("RotationYawSpeed"));

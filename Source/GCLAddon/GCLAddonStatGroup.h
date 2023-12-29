@@ -4,4 +4,4 @@
 
 #include "Stats/Stats.h"
 
-DECLARE_STATS_GROUP(TEXT("CharacterLocomotion"), STATGROUP_GCLAMovement, STATCAT_Advanced);
+GCLADDON_API DECLARE_STATS_GROUP(TEXT("CharacterLocomotion"), STATGROUP_Locomotion, STATCAT_Advanced);

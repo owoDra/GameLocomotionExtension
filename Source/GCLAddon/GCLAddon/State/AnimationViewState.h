@@ -26,6 +26,12 @@ public:
 	float PitchAmount{ 0.5f };
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ClampMin = 0, ClampMax = 1))
+	float ViewAmount{ 1.0f };
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ClampMin = 0, ClampMax = 1))
+	float AimingAmount{ 1.0f };
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ClampMin = 0, ClampMax = 1))
 	float LookAmount{ 1.0f };
 
 };

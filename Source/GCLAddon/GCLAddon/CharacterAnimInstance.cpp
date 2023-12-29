@@ -3,6 +3,7 @@
 #include "CharacterAnimInstance.h"
 
 #include "GameplayTag/GCLATags_Status.h"
+#include "LocomotionGeneralNameStatics.h"
 #include "LocomotionFunctionLibrary.h"
 #include "LocomotionComponent.h"
 #include "LocomotionCharacter.h"
@@ -50,7 +51,7 @@ void UCharacterAnimInstance::NativeBeginPlay()
 
 void UCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 {
-	DECLARE_SCOPE_CYCLE_COUNTER(TEXT("UCharacterAnimInstance::NativeUpdateAnimation()"), STAT_UCharacterAnimInstance_NativeUpdateAnimation, STATGROUP_GCLAMovement);
+	DECLARE_SCOPE_CYCLE_COUNTER(TEXT("UCharacterAnimInstance::NativeUpdateAnimation()"), STAT_UCharacterAnimInstance_NativeUpdateAnimation, STATGROUP_Locomotion);
 
 	Super::NativeUpdateAnimation(DeltaTime);
 
@@ -59,7 +60,7 @@ void UCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 
 void UCharacterAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaTime)
 {
-	DECLARE_SCOPE_CYCLE_COUNTER(TEXT("UCharacterAnimInstance::NativeThreadSafeUpdateAnimation()"), STAT_UCharacterAnimInstance_NativeThreadSafeUpdateAnimation, STATGROUP_GCLAMovement);
+	DECLARE_SCOPE_CYCLE_COUNTER(TEXT("UCharacterAnimInstance::NativeThreadSafeUpdateAnimation()"), STAT_UCharacterAnimInstance_NativeThreadSafeUpdateAnimation, STATGROUP_Locomotion);
 
 	Super::NativeThreadSafeUpdateAnimation(DeltaTime);
 
@@ -68,7 +69,7 @@ void UCharacterAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaTime)
 
 void UCharacterAnimInstance::NativePostEvaluateAnimation()
 {
-	DECLARE_SCOPE_CYCLE_COUNTER(TEXT("UCharacterAnimInstance::NativePostEvaluateAnimation()"), STAT_UCharacterAnimInstance_NativePostEvaluateAnimation, STATGROUP_GCLAMovement)
+	DECLARE_SCOPE_CYCLE_COUNTER(TEXT("UCharacterAnimInstance::NativePostEvaluateAnimation()"), STAT_UCharacterAnimInstance_NativePostEvaluateAnimation, STATGROUP_Locomotion)
 
 	Super::NativePostEvaluateAnimation();
 
@@ -201,6 +202,10 @@ void UCharacterAnimInstance::UpdateView(float DeltaTime)
 
 		ViewState.PitchAmount = (0.5f - ViewState.PitchAngle / 180.0f);
 	}
+
+	ViewState.ViewAmount = 1.0f - GetCurveValueClamped01(ULocomotionGeneralNameStatics::ViewBlockCurveName());
+	ViewState.AimingAmount = GetCurveValueClamped01(ULocomotionGeneralNameStatics::AllowAimingCurveName());
+	ViewState.LookAmount = (ViewState.ViewAmount * (1.0f - ViewState.AimingAmount));
 }
 
 #pragma endregion
