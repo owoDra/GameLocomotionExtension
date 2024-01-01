@@ -18,7 +18,7 @@ enum EMovementMode : int;
 /**
  * Data asset of configuration and definition information about the character's Locomotion
  */
-UCLASS(BlueprintType, Const)
+UCLASS(Blueprintable, BlueprintType, Const)
 class GCLADDON_API ULocomotionData : public UDataAsset
 {
 	GENERATED_BODY()

@@ -997,6 +997,11 @@ void ULocomotionComponent::UpdateCharacterStateBeforeMovement(float DeltaSeconds
 {
 	DECLARE_SCOPE_CYCLE_COUNTER(TEXT("ULocomotionComponent::UpdateCharacterStateBeforeMovement()"), STAT_ULocomotionComponent_UpdateCharacterStateBeforeMovement, STATGROUP_Locomotion);
 
+	if (!LocomotionData)
+	{
+		return;
+	}
+
 	UpdateVisibilityBasedAnimTickOption();
 
 	UpdateMovementBase();
@@ -1021,6 +1026,11 @@ void ULocomotionComponent::UpdateCharacterStateBeforeMovement(float DeltaSeconds
 void ULocomotionComponent::UpdateCharacterStateAfterMovement(float DeltaSeconds)
 {
 	DECLARE_SCOPE_CYCLE_COUNTER(TEXT("ULocomotionComponent::UpdateCharacterStateAfterMovement()"), STAT_ULocomotionComponent_UpdateCharacterStateAfterMovement, STATGROUP_Locomotion);
+
+	if (!LocomotionData)
+	{
+		return;
+	}
 
 	Super::UpdateCharacterStateAfterMovement(DeltaSeconds);
 
