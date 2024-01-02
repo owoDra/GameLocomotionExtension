@@ -15,7 +15,7 @@
 UCharacterModifier_ApplyLocomotionData::UCharacterModifier_ApplyLocomotionData()
 {
 	bOnlyApplyOnLocal = false;
-	bApplyOnClient = false;
+	bApplyOnClient = true;
 	bApplyOnServer = true;
 }
 

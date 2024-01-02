@@ -87,7 +87,7 @@ protected:
 	//
 	// Current locomotion data
 	//
-	UPROPERTY(EditAnywhere, ReplicatedUsing = "OnRep_LocomotionData")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	TObjectPtr<const ULocomotionData> LocomotionData;
 
 	//
@@ -97,9 +97,6 @@ protected:
 	TMap<uint8, TObjectPtr<UCustomMovementProcess>> CustomMovementProcesses;
 
 protected:
-	UFUNCTION()
-	virtual void OnRep_LocomotionData();
-
 	/**
 	 * Apply the current locomotion data
 	 */
@@ -108,14 +105,16 @@ protected:
 	/**
 	 * Create instances of CustomMovementProcess defined in LocomotionData.
 	 */
-
 	void CreateCustomMovementProcesses();
 
 public:
 	/**
 	 * Set the current locomotion data
+	 * 
+	 * Note:
+	 *	This function must be executed on all clients and servers
 	 */
-	UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
+	UFUNCTION(BlueprintCallable)
 	void SetLocomotionData(const ULocomotionData* NewLocomotionData);
 
 #pragma endregion

@@ -279,11 +279,6 @@ void ULocomotionComponent::CheckDefaultInitialization()
 
 #pragma region Movement Data
 
-void ULocomotionComponent::OnRep_LocomotionData()
-{
-	CheckDefaultInitialization();
-}
-
 void ULocomotionComponent::ApplyLocomotionData()
 {
 	check(LocomotionData);
@@ -349,14 +344,11 @@ void ULocomotionComponent::CreateCustomMovementProcesses()
 
 void ULocomotionComponent::SetLocomotionData(const ULocomotionData* NewLocomotionData)
 {
-	if (GetOwner()->HasAuthority())
+	if (LocomotionData != NewLocomotionData)
 	{
-		if (NewLocomotionData != LocomotionData)
-		{
-			LocomotionData = NewLocomotionData;
+		LocomotionData = NewLocomotionData;
 
-			CheckDefaultInitialization();
-		}
+		CheckDefaultInitialization();
 	}
 }
 
@@ -491,6 +483,8 @@ void ULocomotionComponent::UpdateLocomotionConfigs()
 	// Get Configs for current LocomotionMode
 
 	const auto& LocomotionModeConfigs{ LocomotionData->GetLocomotionModeConfig(LocomotionMode) };
+
+	SetLocomotionSpace(LocomotionModeConfigs.LocomotionSpace);
 
 	// Get Tag and Configs from LocomotionModeConfigs based on current DesiredRotationMode and update RotationMode
 
@@ -2011,18 +2005,21 @@ void ULocomotionComponent::UpdateViewRelativeTargetYawAngle()
 
 void ULocomotionComponent::ApplyRotationYawSpeed(float DeltaTime)
 {
-	const auto DeltaYawAngle{ CharacterOwner->GetMesh()->GetAnimInstance()->GetCurveValue(ULocomotionGeneralNameStatics::RotationYawSpeedCurveName()) * DeltaTime };
-	
-	if (FMath::Abs(DeltaYawAngle) > UE_SMALL_NUMBER)
+	if (auto* AnimIns{ CharacterOwner->GetMesh()->GetAnimInstance() })
 	{
-		auto NewRotation{ CharacterOwner->GetActorRotation() };
+		const auto DeltaYawAngle{ AnimIns->GetCurveValue(ULocomotionGeneralNameStatics::RotationYawSpeedCurveName()) * DeltaTime };
 
-		NewRotation.Yaw += DeltaYawAngle;
+		if (FMath::Abs(DeltaYawAngle) > UE_SMALL_NUMBER)
+		{
+			auto NewRotation{ CharacterOwner->GetActorRotation() };
 
-		CharacterOwner->SetActorRotation(NewRotation);
+			NewRotation.Yaw += DeltaYawAngle;
 
-		UpdateLocomotionLocationAndRotation();
-		UpdateTargetYawAngleUsingLocomotionRotation();
+			CharacterOwner->SetActorRotation(NewRotation);
+
+			UpdateLocomotionLocationAndRotation();
+			UpdateTargetYawAngleUsingLocomotionRotation();
+		}
 	}
 }
 
