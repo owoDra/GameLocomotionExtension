@@ -33,6 +33,7 @@ ULocomotionComponent::ULocomotionComponent(const FObjectInitializer& ObjectIniti
 	: Super(ObjectInitializer)
 {
 	SetNetworkMoveDataContainer(MoveDataContainer);
+	SetIsReplicatedByDefault(true);
 
 	// Setup general Settings
 
@@ -88,8 +89,6 @@ void ULocomotionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
 	DOREPLIFETIME_WITH_PARAMS_FAST(ThisClass, ReplicatedViewRotation, Parameters);
 	DOREPLIFETIME_WITH_PARAMS_FAST(ThisClass, InputDirection, Parameters);
 	DOREPLIFETIME_WITH_PARAMS_FAST(ThisClass, DesiredVelocityYawAngle, Parameters);
-
-	DOREPLIFETIME(ThisClass, LocomotionData);
 }
 
 FNetworkPredictionData_Client* ULocomotionComponent::GetPredictionData_Client() const
@@ -286,6 +285,10 @@ void ULocomotionComponent::ApplyLocomotionData()
 	auto* LocomotionCharacter{ GetCharacterChecked<ALocomotionCharacter>() };
 
 	CreateCustomMovementProcesses();
+
+	SetDesiredRotationMode(LocomotionData->DefaultRotationMode);
+	SetDesiredStance(LocomotionData->DefaultStance);
+	SetDesiredGait(LocomotionData->DefaultGait);
 
 	UpdateLocomotionConfigs();
 
@@ -689,7 +692,7 @@ void ULocomotionComponent::Server_SetDesiredGait_Implementation(FGameplayTag New
 
 #pragma region Gait
 
-void ULocomotionComponent::CalcVelocity(float DeltaTime, float Friction, bool bFluid, float BrakingDeceleration)
+void ULocomotionComponent::CalcVelocity(float DeltaTime, float Friction, bool bFluid, float InBrakingDeceleration)
 {
 	FRotator BaseRotationSpeed;
 
@@ -728,28 +731,15 @@ void ULocomotionComponent::RefreshGaitConfigs()
 	RefreshGaitConfigs(GaitConfigs);
 }
 
-void ULocomotionComponent::RefreshGaitConfigs(const FCharacterGaitConfigs& GaitConfigs)
+void ULocomotionComponent::RefreshGaitConfigs(const FCharacterGaitConfigs& InGaitConfigs)
 {
-	MaxWalkSpeed			= GaitConfigs.MaxSpeed;
-	MaxWalkSpeedCrouched	= GaitConfigs.MaxSpeed;
-	MaxFlySpeed				= GaitConfigs.MaxSpeed;
-	MaxSwimSpeed			= GaitConfigs.MaxSpeed;
-	MaxCustomMovementSpeed	= GaitConfigs.MaxSpeed;
-
-	MaxAcceleration = GaitConfigs.MaxAcceleration;
-
-	BrakingDecelerationWalking	= GaitConfigs.BrakingDeceleration;
-	BrakingDecelerationSwimming = GaitConfigs.BrakingDeceleration;
-	BrakingDecelerationFlying	= GaitConfigs.BrakingDeceleration;
-	BrakingDecelerationFalling	= GaitConfigs.BrakingDeceleration;
-
-	GroundFriction = GaitConfigs.GroundFriction;
-
-	JumpZVelocity = GaitConfigs.JumpZPower;
-
-	AirControl = GaitConfigs.AirControl;
-
-	RotationInterpSpeed = GaitConfigs.RotationInterpSpeed;
+	MaxSpeed = InGaitConfigs.MaxSpeed;
+	MaxAcceleration = InGaitConfigs.MaxAcceleration;
+	BrakingDeceleration = InGaitConfigs.BrakingDeceleration;
+	GroundFriction = InGaitConfigs.GroundFriction;
+	JumpZVelocity = InGaitConfigs.JumpZPower;
+	AirControl = InGaitConfigs.AirControl;
+	RotationInterpSpeed = InGaitConfigs.RotationInterpSpeed;
 }
 
 

@@ -60,6 +60,42 @@ namespace LocomotionConfigHelper
 
 
 /////////////////////////////////////////
+// FCharacterGaitConfigs
+
+FCharacterGaitConfigs::FCharacterGaitConfigs()
+{
+	MaxSpeed = 0.0f;
+	MaxAcceleration = 0.0f;
+	BrakingDeceleration = 0.0f;
+	GroundFriction = 8.0f;
+	JumpZPower = 400.0f;
+	AirControl = 1.0f;
+	RotationInterpSpeed = 16.0f;
+	Condition = nullptr;
+}
+
+FCharacterGaitConfigs::FCharacterGaitConfigs(
+	float InMaxSpeed, 
+	float InMaxAcceleration, 
+	float InBrakingDeceleration,
+	float InGroundFriction, 
+	float InJumpZPower, 
+	float InAirControl, 
+	float InRotationInterpSpeed, 
+	const TObjectPtr<ULocomotionCondition>& InCondition)
+{
+	MaxSpeed = InMaxSpeed;
+	MaxAcceleration = InMaxAcceleration;
+	BrakingDeceleration = InBrakingDeceleration;
+	GroundFriction = InGroundFriction;
+	JumpZPower = InJumpZPower;
+	AirControl = InAirControl;
+	RotationInterpSpeed = InRotationInterpSpeed;
+	Condition = InCondition;
+}
+
+
+/////////////////////////////////////////
 // FCharacterStanceConfigs
 
 FCharacterStanceConfigs::FCharacterStanceConfigs()

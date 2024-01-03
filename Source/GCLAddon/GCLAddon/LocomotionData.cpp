@@ -26,6 +26,10 @@ ULocomotionData::ULocomotionData(const FObjectInitializer& ObjectInitializer)
 		{ TAG_Status_LocomotionMode_InAir	, FCharacterLocomotionModeConfigs() },
 		{ TAG_Status_LocomotionMode_InWater	, FCharacterLocomotionModeConfigs() }
 	};
+
+	DefaultRotationMode = TAG_Status_RotationMode_ViewDirection;
+	DefaultStance = TAG_Status_Stance_Standing;
+	DefaultGait = TAG_Status_Gait_Walking;
 }
 
 

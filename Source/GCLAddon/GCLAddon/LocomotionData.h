@@ -72,6 +72,28 @@ public:
 
 
 	//////////////////////////////////////////////////////////////////////////////////////////
+	// Default
+public:
+	//
+	// Default Character RotationMode
+	//
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Default", Meta = (ForceInlineRow, Categories = "Status.RotationMode"))
+	FGameplayTag DefaultRotationMode;
+
+	//
+	// Default Character Stance
+	//
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Default", Meta = (ForceInlineRow, Categories = "Status.Stance"))
+	FGameplayTag DefaultStance;
+
+	//
+	// Default Character Gait
+	//
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Default", Meta = (ForceInlineRow, Categories = "Status.Gait"))
+	FGameplayTag DefaultGait;
+
+
+	//////////////////////////////////////////////////////////////////////////////////////////
 	// Movement
 public:
 	//
@@ -80,6 +102,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement", Meta = (ClampMin = 0, ForceUnits = "cm/s"))
 	float MovingSpeedThreshold{ 50.0f };
 
+
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// Rotation
+public:
 	//
 	// Whether the rotation of the object on which the character is standing should be reflected in the character
 	//
@@ -92,6 +118,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Rotation")
 	bool bRotateTowardsDesiredVelocityInVelocityDirectionRotationMode{ true };
 
+
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// Network
+public:
 	//
 	// Whether to use net smoothing
 	//

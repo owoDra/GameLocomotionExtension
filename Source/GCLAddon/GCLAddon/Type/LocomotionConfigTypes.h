@@ -20,61 +20,52 @@ struct FCharacterGaitConfigs
 {
 	GENERATED_BODY()
 public:
-	FCharacterGaitConfigs() {}
+	FCharacterGaitConfigs();
 
-	FCharacterGaitConfigs(float InMaxSpeed, float InMaxAcceleration, float InBrakingDeceleration, float InGroundFriction, float InJumpZPower, float InAirControl, float InRotationInterpSpeed, const TObjectPtr<ULocomotionCondition>& InCondition)
-		: MaxSpeed(InMaxSpeed)
-		, MaxAcceleration(InMaxAcceleration)
-		, BrakingDeceleration(InBrakingDeceleration)
-		, GroundFriction(InGroundFriction)
-		, JumpZPower(InJumpZPower)
-		, AirControl(InAirControl)
-		, RotationInterpSpeed(InRotationInterpSpeed)
-		, Condition(InCondition)
-	{}
+	FCharacterGaitConfigs(float InMaxSpeed, float InMaxAcceleration, float InBrakingDeceleration, float InGroundFriction, float InJumpZPower, float InAirControl, float InRotationInterpSpeed, const TObjectPtr<ULocomotionCondition>& InCondition);
 
 public:
 	//
 	// Maximum movement speed while this Gait is being applied.
 	//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ClampMin = 0, ForceUnits = "cm/s"))
-	float MaxSpeed{ 0.0f };
+	float MaxSpeed;
 
 	//
 	// Maximum acceleration during which this Gait is applied.
 	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ForceUnits = "cm/s"))
-	float MaxAcceleration{ 0.0f };
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxAcceleration;
 
 	//
 	// Deceleration during which this Gait is applied.
 	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ForceUnits = "cm/s"))
-	float BrakingDeceleration{ 0.0f };
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float BrakingDeceleration;
 
 	//
 	// Friction factor during this Gait is applied.
 	//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float GroundFriction{ 1.0f };
+	float GroundFriction;
 
 	//
 	// Jump force during this Gait is applied.
 	//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float JumpZPower{ 400.0f };
+	float JumpZPower;
 
 	//
 	// Air control during this Gait is applied.
 	//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float AirControl{ 1.0f };
+	float AirControl;
 
 	//
 	// Rotation interp speed during this Gait is applied.
 	//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float RotationInterpSpeed{ 16.0f };
+	float RotationInterpSpeed;
 
 	//
 	// Conditions to determine if a transition is possible

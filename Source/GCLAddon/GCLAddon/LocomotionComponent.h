@@ -18,6 +18,7 @@
 class ULocomotionData;
 class UCustomMovementProcess;
 struct FBasedMovementInfo;
+struct FRuntimeFloatCurve;
 
 
 /**
@@ -426,10 +427,22 @@ protected:
 	FGameplayTag Gait;
 
 	//
+	// Max movement speed speed in the current Gait state of Character
+	//
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State|Gait", Transient)
+	float MaxSpeed;
+
+	//
+	// Braking deceleration in the current Gait state of Character
+	//
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State|Gait", Transient)
+	float BrakingDeceleration;
+
+	//
 	// Rotational interpolation speed in the current Gait state of Character
 	//
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State|Gait", Transient)
-	float RotationInterpSpeed{ 0.0 };
+	float RotationInterpSpeed;
 
 	//
 	// Whether GaitConfigs should be updated
@@ -438,7 +451,10 @@ protected:
 	bool bShouldUpdateGaitConfigs{ true };
 
 public:
-	virtual void CalcVelocity(float DeltaTime, float Friction, bool bFluid, float BrakingDeceleration) override;
+	virtual void CalcVelocity(float DeltaTime, float Friction, bool bFluid, float InBrakingDeceleration) override;
+
+	virtual float GetMaxSpeed() const override { return MaxSpeed; }
+	virtual float GetMaxBrakingDeceleration() const override { return BrakingDeceleration; }
 
 	/**
 	 * Get current Gait
@@ -456,7 +472,7 @@ protected:
 	 * Update GaitConfigs corresponding to the current Gait
 	 */
 	void RefreshGaitConfigs();
-	void RefreshGaitConfigs(const FCharacterGaitConfigs& GaitConfigs);
+	void RefreshGaitConfigs(const FCharacterGaitConfigs& InGaitConfigs);
 
 private:
 	/**
