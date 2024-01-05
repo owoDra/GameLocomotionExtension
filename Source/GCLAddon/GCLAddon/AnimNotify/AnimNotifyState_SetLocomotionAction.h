@@ -12,7 +12,7 @@
 /**
  * AnimNotifyState class to override the character's LocomotionAction during animation playback.
  */
-UCLASS(BlueprintType)
+UCLASS(BlueprintType, meta = (DisplayName = "ANS Set Locomotion Action"))
 class UAnimNotifyState_SetLocomotionAction : public UAnimNotifyState
 {
 	GENERATED_BODY()

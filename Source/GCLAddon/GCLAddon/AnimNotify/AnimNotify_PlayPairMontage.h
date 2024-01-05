@@ -14,7 +14,7 @@ class UAnimMontage;
 /**
  * AnimNotify class that plays the specified animation for other Mesh of the character during animation playback
  */
-UCLASS(BlueprintType)
+UCLASS(BlueprintType, meta = (DisplayName = "AN Play Pair Montage"))
 class UAnimNotify_PlayPairMontage : public UAnimNotify
 {
 	GENERATED_BODY()
