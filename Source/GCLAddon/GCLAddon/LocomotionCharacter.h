@@ -49,7 +49,7 @@ public:
 
 	virtual void Reset() override;
 
-private:
+protected:
 	void DisableMovementAndCollision();
 	void UninitAndDestroy();
 
