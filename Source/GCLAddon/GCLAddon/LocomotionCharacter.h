@@ -3,12 +3,11 @@
 #pragma once
 
 #include "Actor/GFCCharacter.h"
-#include "CharacterMeshAccessorInterface.h"
+#include "Character/CharacterMeshAccessorInterface.h"
 
 #include "LocomotionCharacter.generated.h"
 
 class ULocomotionComponent;
-class UCharacterDataComponent;
 
 
 /**
@@ -28,9 +27,6 @@ public:
 #endif
 
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component")
-	TObjectPtr<UCharacterDataComponent> CharacterDataComponent;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component")
 	TObjectPtr<ULocomotionComponent> LocomotionComponent;
 

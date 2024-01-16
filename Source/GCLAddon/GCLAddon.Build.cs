@@ -1,4 +1,4 @@
-// Copyright (C) 2024 owoDra
+﻿// Copyright (C) 2024 owoDra
 
 using UnrealBuildTool;
 
@@ -37,7 +37,6 @@ public class GCLAddon : ModuleRules
             new string[]
             {
                 "GFCore",
-                "GCExt",
             }
         );
 

@@ -7,8 +7,6 @@
 #include "LocomotionFunctionLibrary.h"
 #include "LocomotionComponent.h"
 
-#include "CharacterDataComponent.h"
-
 #include "Net/UnrealNetwork.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
@@ -46,10 +44,6 @@ ALocomotionCharacter::ALocomotionCharacter(const FObjectInitializer& ObjectIniti
 
 	BaseEyeHeight = 80.0f;
 	CrouchedEyeHeight = 50.0f;
-
-	// Setup Character Data Component
-
-	CharacterDataComponent = CreateDefaultSubobject<UCharacterDataComponent>(TEXT("CharacterDataComponent"));
 
 	// Cache GCLA Character Movement Component
 

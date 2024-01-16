@@ -12,7 +12,7 @@
 #include "GCLAddonLogs.h"
 #include "GCLAddonStatGroup.h"
 
-#include "CharacterMeshAccessorInterface.h"
+#include "Character/CharacterMeshAccessorInterface.h"
 
 #include "InitState/InitStateComponent.h"
 #include "InitState/InitStateTags.h"

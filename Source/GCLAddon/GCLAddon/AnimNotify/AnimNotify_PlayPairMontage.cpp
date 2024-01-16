@@ -4,7 +4,7 @@
 
 #include "LocomotionCharacter.h"
 
-#include "CharacterMeshAccessorInterface.h"
+#include "Character/CharacterMeshAccessorInterface.h"
 
 #include "Components/SkeletalMeshComponent.h"
 #include "Animation/AnimInstance.h"
