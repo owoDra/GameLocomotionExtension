@@ -719,6 +719,11 @@ void ULocomotionComponent::SetGait(FGameplayTag NewGait)
 
 void ULocomotionComponent::RefreshGaitConfigs()
 {
+	if (!LocomotionData)
+	{
+		return;
+	}
+
 	auto AllowedRotationMode{ RotationMode };
 	auto AllowedStance{ Stance };
 	auto AllowedGait{ Gait };
