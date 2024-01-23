@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Actor/GFCCharacter.h"
+#include "Character/GFCCharacter.h"
 
 #include "LocomotionCharacter.generated.h"
 
