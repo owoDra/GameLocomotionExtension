@@ -84,6 +84,13 @@ protected:
 	////////////////////////////////////////////////
 	// Locomotion Data
 #pragma region Locomotion Data
+
+	/**
+	 * @TODO: Consider whether to replicate LocomotionData.
+	 *	Currently, LocomotionData must be initialized through events that are executed from both the client and server, 
+	 *	or it must be set up at the CDO stage.
+	 */
+
 protected:
 	//
 	// Current locomotion data
@@ -107,6 +114,11 @@ protected:
 	 * Create instances of CustomMovementProcess defined in LocomotionData.
 	 */
 	void CreateCustomMovementProcesses();
+
+	/**
+	 * Calls when locomotion data set or changed
+	 */
+	virtual void HandleLocomotionDataUpdated();
 
 public:
 	/**

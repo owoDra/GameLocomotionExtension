@@ -345,13 +345,25 @@ void ULocomotionComponent::CreateCustomMovementProcesses()
 	}
 }
 
+void ULocomotionComponent::HandleLocomotionDataUpdated()
+{
+	if (HasReachedInitState(TAG_InitState_DataInitialized))
+	{
+		ApplyLocomotionData();
+	}
+	else
+	{
+		CheckDefaultInitialization();
+	}
+}
+
 void ULocomotionComponent::SetLocomotionData(const ULocomotionData* NewLocomotionData)
 {
 	if (LocomotionData != NewLocomotionData)
 	{
 		LocomotionData = NewLocomotionData;
 
-		CheckDefaultInitialization();
+		HandleLocomotionDataUpdated();
 	}
 }
 
