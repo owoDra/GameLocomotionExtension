@@ -1,4 +1,4 @@
-// Copyright (C) 2024 owoDra
+﻿// Copyright (C) 2024 owoDra
 
 using UnrealBuildTool;
 
@@ -19,11 +19,10 @@ public class GLExtNode : ModuleRules
         PrivateDependencyModuleNames.AddRange(
 			new[]
 			{
-				"Core", 
-				"CoreUObject", 
-				"Engine", 
-				"AnimationModifiers", 
-				"AnimationBlueprintLibrary",
+				"Core", "CoreUObject", "Engine", 
+
+				"AnimationModifiers", "AnimationBlueprintLibrary",
+
                 "GLExt"
             }
 		);

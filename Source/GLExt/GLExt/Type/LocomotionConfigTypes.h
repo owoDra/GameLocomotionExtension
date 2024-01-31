@@ -26,6 +26,12 @@ public:
 
 public:
 	//
+	// Conditions to determine if a transition is possible
+	//
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced)
+	TObjectPtr<const ULocomotionCondition> Condition{ nullptr };
+
+	//
 	// Maximum movement speed while this Gait is being applied.
 	//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ClampMin = 0, ForceUnits = "cm/s"))
@@ -67,12 +73,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float RotationInterpSpeed;
 
-	//
-	// Conditions to determine if a transition is possible
-	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced)
-	TObjectPtr<const ULocomotionCondition> Condition{ nullptr };
-
 };
 
 
@@ -88,6 +88,12 @@ public:
 
 public:
 	//
+	// Conditions to determine if a transition is possible
+	//
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced)
+	TObjectPtr<const ULocomotionCondition> Condition{ nullptr };
+
+	//
 	// Gait to be transitioned when an invalid Gait is set.
 	//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (Categories = "Status.Gait"))
@@ -96,14 +102,9 @@ public:
 	//
 	// Gait allowed during this Stance is applied.
 	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (Categories = "Status.Gait", ForceInlineRow))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ForceInlineRow, Categories = "Status.Gait", ForceInlineRow))
 	TMap<FGameplayTag, FCharacterGaitConfigs> Gaits;
 
-	//
-	// Conditions to determine if a transition is possible
-	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced)
-	TObjectPtr<const ULocomotionCondition> Condition{ nullptr };
 
 public:
 	/**
@@ -126,6 +127,12 @@ public:
 
 public:
 	//
+	// Conditions to determine if a transition is possible
+	//
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced)
+	TObjectPtr<const ULocomotionCondition> Condition;
+
+	//
 	// Gait to be transitioned when an invalid stance is set.
 	//
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (Categories = "Status.Stance"))
@@ -134,14 +141,8 @@ public:
 	//
 	// Stance allowed during this RotationMode is applied.
 	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (Categories = "Status.Stance", ForceInlineRow))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ForceInlineRow, Categories = "Status.Stance"))
 	TMap<FGameplayTag, FCharacterStanceConfigs> Stances;
-
-	//
-	// Conditions to determine if a transition is possible
-	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced)
-	TObjectPtr<const ULocomotionCondition> Condition;
 
 public:
 	/**
@@ -164,6 +165,12 @@ public:
 
 public:
 	//
+	// Conditions to determine if a transition is possible
+	//
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced)
+	TObjectPtr<const ULocomotionCondition> Condition{ nullptr };
+
+	//
 	// Which LocomotionSpace this LocomotionMode moves
 	// 
 	// Note:
@@ -181,14 +188,9 @@ public:
 	//
 	// RotationMode allowed during this LocomotionMode is applied.
 	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (Categories = "Status.RotationMode", ForceInlineRow))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ForceInlineRow, Categories = "Status.RotationMode"))
 	TMap<FGameplayTag, FCharacterRotationModeConfigs> RotationModes;
 
-	//
-	// Conditions to determine if a transition is possible
-	//
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Instanced)
-	TObjectPtr<const ULocomotionCondition> Condition{ nullptr };
 
 public:
 	/**
