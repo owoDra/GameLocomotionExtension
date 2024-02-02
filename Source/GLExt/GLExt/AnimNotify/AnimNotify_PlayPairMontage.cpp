@@ -29,10 +29,13 @@ void UAnimNotify_PlayPairMontage::Notify(USkeletalMeshComponent* MeshComp, UAnim
 	{
 		FollowerAnimIns->Montage_Play(Montage);
 
-		auto* OtherAnimIns{ MeshComp->GetAnimInstance() };
+		if(bShouldSync)
+		{
+			auto* OtherAnimIns{ MeshComp->GetAnimInstance() };
 
-		auto* MontageLeader{ Cast<UAnimMontage>(Animation) };
+			auto* MontageLeader{ Cast<UAnimMontage>(Animation) };
 
-		FollowerAnimIns->MontageSync_Follow(Montage, OtherAnimIns, MontageLeader);
+			FollowerAnimIns->MontageSync_Follow(Montage, OtherAnimIns, MontageLeader);
+		}
 	}
 }

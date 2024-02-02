@@ -28,6 +28,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "PlayMontage")
 	TObjectPtr<UAnimMontage> Montage;
 
+	UPROPERTY(AdvancedDisplay, BlueprintReadWrite, EditAnywhere, Category = "PlayMontage")
+	bool bShouldSync{ true };
+
 public:
 	virtual void Notify(
 		USkeletalMeshComponent* MeshComp, 
