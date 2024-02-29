@@ -186,14 +186,15 @@ void ALocomotionCharacter::DisableMovementAndCollision()
 		Controller->SetIgnoreMoveInput(true);
 	}
 
-	auto* CapsuleComp{ GetCapsuleComponent() };
-	check(CapsuleComp);
-	CapsuleComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	CapsuleComp->SetCollisionResponseToAllChannels(ECR_Ignore);
-
 	check(LocomotionComponent);
 	LocomotionComponent->StopMovementImmediately();
 	LocomotionComponent->DisableMovement();
+
+	auto* CapsuleComp{ GetCapsuleComponent() };
+	check(CapsuleComp);
+	//CapsuleComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	CapsuleComp->SetCollisionResponseToAllChannels(ECR_Ignore);
+	//CapsuleComp->SetEnableGravity(false);
 }
 
 void ALocomotionCharacter::UninitAndDestroy()
