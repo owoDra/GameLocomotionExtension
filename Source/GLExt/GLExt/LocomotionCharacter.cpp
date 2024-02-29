@@ -193,7 +193,7 @@ void ALocomotionCharacter::DisableMovementAndCollision()
 	auto* CapsuleComp{ GetCapsuleComponent() };
 	check(CapsuleComp);
 	//CapsuleComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	CapsuleComp->SetCollisionResponseToAllChannels(ECR_Ignore);
+	//CapsuleComp->SetCollisionResponseToAllChannels(ECR_Ignore);
 	//CapsuleComp->SetEnableGravity(false);
 }
 
