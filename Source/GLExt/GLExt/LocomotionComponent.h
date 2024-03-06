@@ -157,11 +157,13 @@ public:
 	/**
 	 * Returns whether Locomotion Space is InAir or not.
 	 */
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Locomotion State")
 	virtual bool IsMovingInAir() const { return LocomotionSpace == ELocomotionSpace::InAir; }
 
 	/**
 	 * Returns whether Locomotion Space is InWater or not.
 	 */
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Locomotion State")
 	virtual bool IsMovingInWater() const { return LocomotionSpace == ELocomotionSpace::InWater; }
 
 #pragma endregion
